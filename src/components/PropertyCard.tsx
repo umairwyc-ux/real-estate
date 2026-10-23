@@ -17,7 +17,7 @@ import {
   getCategoryBadge, 
   getConditionBadge, 
   normalizeImageUrl, 
-  DEFAULT_HOUSE_IMAGE, 
+  getCategoryFallback,
   DEFAULT_FALLBACK_IMAGE 
 } from '../utils/formatters';
 
@@ -34,13 +34,32 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
   whatsappNumber = '923001234567',
   viewMode = 'grid'
 }) => {
-  const [imgError, setImgError] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const initialImage = (property.images && property.images.length > 0)
+    ? normalizeImageUrl(property.images[0], property.type)
+    : normalizeImageUrl('', property.type);
 
-  const rawImage = (property.images && property.images.length > 0)
-    ? property.images[0]
-    : DEFAULT_HOUSE_IMAGE;
-  const mainImage = normalizeImageUrl(rawImage);
+  const [imgSrc, setImgSrc] = useState(initialImage);
+  const [errorCount, setErrorCount] = useState(0);
+
+  React.useEffect(() => {
+    const updated = (property.images && property.images.length > 0)
+      ? normalizeImageUrl(property.images[0], property.type)
+      : normalizeImageUrl('', property.type);
+    setImgSrc(updated);
+    setErrorCount(0);
+  }, [property.id, property.images, property.type]);
+
+  const handleImageError = () => {
+    if (errorCount === 0) {
+      // First fallback: High quality category CDN photo
+      setErrorCount(1);
+      setImgSrc(getCategoryFallback(property.type));
+    } else if (errorCount === 1) {
+      // Second fallback: 100% fail-safe inline SVG (never fails)
+      setErrorCount(2);
+      setImgSrc(DEFAULT_FALLBACK_IMAGE);
+    }
+  };
 
   const waLink = generateWhatsAppLink(
     property.contactWhatsapp || whatsappNumber,
@@ -54,23 +73,15 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
     return (
       <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col md:flex-row group">
         {/* Left image column */}
-        <div className="relative md:w-72 lg:w-80 h-56 md:h-auto shrink-0 bg-slate-100 overflow-hidden cursor-pointer" onClick={() => onSelect(property.id)}>
-          {!imgError ? (
-            <img
-              src={mainImage}
-              alt={property.title}
-              referrerPolicy="no-referrer"
-              className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
-              onLoad={() => setImgLoaded(true)}
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-slate-300 p-4 text-center">
-              <Building2 className="w-10 h-10 text-amber-400 mb-2" />
-              <span className="text-xs font-semibold text-slate-200">{property.title}</span>
-              <span className="text-[11px] text-amber-400/90">{property.area} · {property.city}</span>
-            </div>
-          )}
+        <div className="relative md:w-72 lg:w-80 h-56 md:h-auto shrink-0 bg-slate-900 overflow-hidden cursor-pointer" onClick={() => onSelect(property.id)}>
+          <img
+            src={imgSrc}
+            alt={property.title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={handleImageError}
+          />
 
           {/* Badges on image */}
           <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
@@ -187,25 +198,17 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
     <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col group h-full">
       {/* Property Image Container */}
       <div 
-        className="relative aspect-4/3 w-full bg-slate-100 overflow-hidden cursor-pointer"
+        className="relative aspect-4/3 w-full bg-slate-900 overflow-hidden cursor-pointer"
         onClick={() => onSelect(property.id)}
       >
-        {!imgError ? (
-          <img
-            src={mainImage}
-            alt={property.title}
-            referrerPolicy="no-referrer"
-            className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={() => setImgLoaded(true)}
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-850 to-slate-800 text-slate-200 p-4 text-center">
-            <Building2 className="w-10 h-10 text-amber-400 mb-2" />
-            <span className="text-xs font-semibold">{property.title}</span>
-            <span className="text-[11px] text-amber-400">{property.area} · {property.city}</span>
-          </div>
-        )}
+        <img
+          src={imgSrc}
+          alt={property.title}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={handleImageError}
+        />
 
         {/* Status badges */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">

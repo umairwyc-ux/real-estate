@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { INLINE_PROPERTY_SVG } from '../assets/images';
 
 interface ImageLightboxProps {
   images: string[];
@@ -68,6 +69,10 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
           src={images[currentIndex]}
           alt={`${title} - Photo ${currentIndex + 1}`}
           className="max-h-[75vh] max-w-full object-contain select-none shadow-2xl rounded-lg"
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.src = INLINE_PROPERTY_SVG;
+          }}
         />
 
         {images.length > 1 && (
@@ -102,7 +107,15 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
                 idx === currentIndex ? 'border-amber-400 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
               }`}
             >
-              <img src={img} alt="thumb" className="w-full h-full object-cover" />
+              <img 
+                src={img} 
+                alt="thumb" 
+                className="w-full h-full object-cover" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.src = INLINE_PROPERTY_SVG;
+                }}
+              />
             </button>
           ))}
         </div>

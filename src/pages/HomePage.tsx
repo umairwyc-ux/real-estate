@@ -108,7 +108,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           <img
             src={normalizeImageUrl(settings?.heroImageUrl) || DEFAULT_HERO_IMAGE}
             alt="Luxury Property in Pakistan"
+            loading="eager"
+            decoding="async"
             className="w-full h-full object-cover object-center opacity-40 scale-105 transition-transform duration-1000"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.src = DEFAULT_HERO_IMAGE;
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/50" />
         </div>

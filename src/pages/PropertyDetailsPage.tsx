@@ -26,6 +26,7 @@ import {
   getCategoryBadge, 
   getConditionBadge, 
   normalizeImageUrl, 
+  getCategoryFallback,
   DEFAULT_HOUSE_IMAGE, 
   DEFAULT_FALLBACK_IMAGE 
 } from '../utils/formatters';
@@ -154,8 +155,8 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
   }
 
   const galleryImages = property.images && property.images.length > 0
-    ? property.images.map(img => normalizeImageUrl(img))
-    : [DEFAULT_HOUSE_IMAGE];
+    ? property.images.map(img => normalizeImageUrl(img, property.type))
+    : [normalizeImageUrl('', property.type)];
 
   const waLink = generateWhatsAppLink(
     property.contactWhatsapp || settings?.whatsappNumber || '923001234567',
@@ -277,8 +278,18 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
               <img
                 src={galleryImages[activeImageIndex]}
                 alt={property.title}
-                referrerPolicy="no-referrer"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const fallback = getCategoryFallback(property.type);
+                  if (target.src !== fallback) {
+                    target.src = fallback;
+                  } else {
+                    target.src = DEFAULT_FALLBACK_IMAGE;
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-white text-xs font-semibold flex items-center gap-1.5 bg-black/60 px-3 py-1.5 rounded-lg backdrop-blur-xs">
@@ -298,7 +309,17 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
                     idx === activeImageIndex ? 'border-amber-500 ring-2 ring-amber-500/20' : 'border-transparent opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
+                  <img 
+                    src={img} 
+                    alt="thumbnail" 
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover" 
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.src = DEFAULT_FALLBACK_IMAGE;
+                    }}
+                  />
                 </div>
               ))}
             </div>

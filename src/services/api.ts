@@ -18,8 +18,8 @@ function normalizePropertyImages(property: Property): Property {
   return {
     ...property,
     images: (property.images && property.images.length > 0)
-      ? property.images.map(img => normalizeImageUrl(img))
-      : ['/images/house_dha_contemporary.jpg']
+      ? property.images.map(img => normalizeImageUrl(img, property.type))
+      : [normalizeImageUrl('', property.type)]
   };
 }
 
@@ -251,7 +251,7 @@ export const api = {
         bathrooms: Number(property.bathrooms) || 0,
         description: property.description || '',
         features: property.features || ['Modern Amenities'],
-        images: property.images && property.images.length > 0 ? property.images.map(normalizeImageUrl) : ['/images/house_dha_contemporary.jpg'],
+        images: property.images && property.images.length > 0 ? property.images.map(img => normalizeImageUrl(img, property.type)) : ['/images/house_dha_contemporary.jpg'],
         featured: Boolean(property.featured),
         status: property.status || 'available',
         furnishing: property.furnishing || 'unfurnished',

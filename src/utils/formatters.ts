@@ -1,4 +1,9 @@
 import { PropertyPurpose } from '../types';
+import { 
+  BUNDLED_IMAGES, 
+  CDN_FALLBACK_IMAGES, 
+  INLINE_PROPERTY_SVG 
+} from '../assets/images';
 
 export function formatPKR(price: number, purpose: PropertyPurpose = 'sale'): string {
   if (isNaN(price) || price === 0) return 'Price on Demand';
@@ -74,21 +79,75 @@ export function getConditionBadge(cond: string): string {
   }
 }
 
-export const DEFAULT_FALLBACK_IMAGE = '/images/property_placeholder.svg';
-export const DEFAULT_HOUSE_IMAGE = '/images/house_dha_contemporary.jpg';
-export const DEFAULT_HERO_IMAGE = '/images/hero_luxury_villa.jpg';
+export const DEFAULT_FALLBACK_IMAGE = INLINE_PROPERTY_SVG;
+export const DEFAULT_HOUSE_IMAGE = BUNDLED_IMAGES.house;
+export const DEFAULT_HERO_IMAGE = BUNDLED_IMAGES.hero;
 
-export function normalizeImageUrl(url?: string): string {
+/**
+ * Returns a high-reliability category fallback image
+ */
+export function getCategoryFallback(type?: string): string {
+  if (!type) return CDN_FALLBACK_IMAGES.house;
+  const key = type.toLowerCase();
+  if (key.includes('villa')) return CDN_FALLBACK_IMAGES.villa;
+  if (key.includes('apartment') || key.includes('flat')) return CDN_FALLBACK_IMAGES.apartment;
+  if (key.includes('plot')) return CDN_FALLBACK_IMAGES.plot;
+  if (key.includes('commercial')) return CDN_FALLBACK_IMAGES.commercial;
+  if (key.includes('shop')) return CDN_FALLBACK_IMAGES.shop;
+  if (key.includes('office')) return CDN_FALLBACK_IMAGES.office;
+  return CDN_FALLBACK_IMAGES.house;
+}
+
+/**
+ * Normalizes property image URLs:
+ * - Maps local asset names to bundled Vite imports (ensuring assets are bundled into dist/assets with hashes)
+ * - Retains valid external URLs (HTTPS)
+ * - Returns category-aware fallback for missing or empty images
+ */
+export function normalizeImageUrl(url?: string, propertyType?: string | unknown): string {
+  const typeStr = typeof propertyType === 'string' ? propertyType : undefined;
+
   if (!url || typeof url !== 'string' || !url.trim()) {
-    return DEFAULT_FALLBACK_IMAGE;
+    if (typeStr) {
+      const pt = typeStr.toLowerCase();
+      if (pt.includes('villa')) return BUNDLED_IMAGES.hero;
+      if (pt.includes('apartment')) return BUNDLED_IMAGES.apartment;
+      if (pt.includes('commercial')) return BUNDLED_IMAGES.commercial;
+      return BUNDLED_IMAGES.house;
+    }
+    return BUNDLED_IMAGES.house;
   }
+
   const trimmed = url.trim();
-  // Transform development-only Vite src paths to production public assets
+
+  // If already an external URL or data URI, return directly
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:')) {
+    return trimmed;
+  }
+
+  // Map known image references to bundled Vite assets (hash-bundled into dist/assets)
+  const lower = trimmed.toLowerCase();
+  if (lower.includes('hero_luxury_villa')) {
+    return BUNDLED_IMAGES.hero;
+  }
+  if (lower.includes('house_dha') || lower.includes('contemporary')) {
+    return BUNDLED_IMAGES.house;
+  }
+  if (lower.includes('apartment_luxury_tower') || lower.includes('apartment')) {
+    return BUNDLED_IMAGES.apartment;
+  }
+  if (lower.includes('commercial_plaza_modern') || lower.includes('commercial')) {
+    return BUNDLED_IMAGES.commercial;
+  }
+
+  // Transform legacy src paths if present
   if (trimmed.startsWith('/src/assets/images/')) {
     return trimmed.replace('/src/assets/images/', '/images/');
   }
   if (trimmed.startsWith('src/assets/images/')) {
     return '/' + trimmed.replace('src/assets/images/', 'images/');
   }
+
   return trimmed;
 }
+
