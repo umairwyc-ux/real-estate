@@ -203,7 +203,7 @@ app.post('/api/properties', requireAdmin, (req: Request, res: Response) => {
     bathrooms: Number(bathrooms) || 0,
     description: description || '',
     features: Array.isArray(features) ? features : [],
-    images: Array.isArray(images) && images.length > 0 ? images : ['/src/assets/images/house_dha_contemporary_1792767492366.jpg'],
+    images: Array.isArray(images) && images.length > 0 ? images : ['/images/house_dha_contemporary.jpg'],
     featured: Boolean(featured),
     status: status || 'available',
     furnishing: furnishing || 'unfurnished',

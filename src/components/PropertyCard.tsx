@@ -11,7 +11,15 @@ import {
   Calendar
 } from 'lucide-react';
 import { Property } from '../types';
-import { formatPKR, generateWhatsAppLink, getCategoryBadge, getConditionBadge } from '../utils/formatters';
+import { 
+  formatPKR, 
+  generateWhatsAppLink, 
+  getCategoryBadge, 
+  getConditionBadge, 
+  normalizeImageUrl, 
+  DEFAULT_HOUSE_IMAGE, 
+  DEFAULT_FALLBACK_IMAGE 
+} from '../utils/formatters';
 
 interface PropertyCardProps {
   property: Property;
@@ -29,9 +37,10 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const mainImage = (property.images && property.images.length > 0)
+  const rawImage = (property.images && property.images.length > 0)
     ? property.images[0]
-    : '/src/assets/images/house_dha_contemporary_1792767492366.jpg';
+    : DEFAULT_HOUSE_IMAGE;
+  const mainImage = normalizeImageUrl(rawImage);
 
   const waLink = generateWhatsAppLink(
     property.contactWhatsapp || whatsappNumber,

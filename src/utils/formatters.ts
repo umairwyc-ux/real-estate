@@ -73,3 +73,22 @@ export function getConditionBadge(cond: string): string {
     default: return cond;
   }
 }
+
+export const DEFAULT_FALLBACK_IMAGE = '/images/property_placeholder.svg';
+export const DEFAULT_HOUSE_IMAGE = '/images/house_dha_contemporary.jpg';
+export const DEFAULT_HERO_IMAGE = '/images/hero_luxury_villa.jpg';
+
+export function normalizeImageUrl(url?: string): string {
+  if (!url || typeof url !== 'string' || !url.trim()) {
+    return DEFAULT_FALLBACK_IMAGE;
+  }
+  const trimmed = url.trim();
+  // Transform development-only Vite src paths to production public assets
+  if (trimmed.startsWith('/src/assets/images/')) {
+    return trimmed.replace('/src/assets/images/', '/images/');
+  }
+  if (trimmed.startsWith('src/assets/images/')) {
+    return '/' + trimmed.replace('src/assets/images/', 'images/');
+  }
+  return trimmed;
+}

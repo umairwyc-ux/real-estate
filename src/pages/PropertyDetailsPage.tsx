@@ -20,7 +20,15 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { Property, SiteSettings } from '../types';
-import { formatPKR, generateWhatsAppLink, getCategoryBadge, getConditionBadge } from '../utils/formatters';
+import { 
+  formatPKR, 
+  generateWhatsAppLink, 
+  getCategoryBadge, 
+  getConditionBadge, 
+  normalizeImageUrl, 
+  DEFAULT_HOUSE_IMAGE, 
+  DEFAULT_FALLBACK_IMAGE 
+} from '../utils/formatters';
 import { PropertyCard } from '../components/PropertyCard';
 import { ImageLightbox } from '../components/ImageLightbox';
 import { api } from '../services/api';
@@ -146,8 +154,8 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
   }
 
   const galleryImages = property.images && property.images.length > 0
-    ? property.images
-    : ['/src/assets/images/house_dha_contemporary_1792767492366.jpg'];
+    ? property.images.map(img => normalizeImageUrl(img))
+    : [DEFAULT_HOUSE_IMAGE];
 
   const waLink = generateWhatsAppLink(
     property.contactWhatsapp || settings?.whatsappNumber || '923001234567',

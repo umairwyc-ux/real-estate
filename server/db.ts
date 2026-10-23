@@ -53,7 +53,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
   businessAddress: 'Floor 4, Vista Commercial Tower, MM Alam Road, Gulberg III, Lahore, Pakistan',
   heroHeadline: 'Find Your Perfect Property with ZameenVista',
   heroSubtitle: 'Discover homes, plots, apartments and commercial properties across Pakistan.',
-  heroImageUrl: '/src/assets/images/hero_luxury_villa_1792767491841.jpg',
+  heroImageUrl: '/images/hero_luxury_villa_1792767491841.jpg',
   socials: {
     facebook: 'https://facebook.com',
     twitter: 'https://twitter.com',
@@ -84,8 +84,8 @@ const SEED_PROPERTIES: Property[] = [
     description: 'An architectural masterpiece in DHA Phase 6 Lahore featuring double-height ceiling lobby, Italian marble flooring, imported Spanish bathroom sanitary fittings, two custom designer kitchens with German hardware, servant quarter, and landscaped terrace.',
     features: ['Double Height Ceiling', 'Imported Kitchens', 'Lush Lawn', 'Servant Quarter', '24/7 DHA Security', 'Underground Utilities', 'Solar Ready'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg',
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg',
+      '/images/hero_luxury_villa_1792767491841.jpg'
     ],
     featured: true,
     status: 'available',
@@ -117,7 +117,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Compact luxury family home in Sector C, Bahria Town Lahore. Features contemporary glass facade, 3 master en-suite bedrooms, rooftop BBQ pergola, and proximity to Eiffel Tower park and international schools.',
     features: ['Gated Sector Security', 'Rooftop Pergola', 'Turkish Tiles', 'LED Ambient Lighting', 'Near Commercial Hub'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -149,7 +149,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Well-maintained solid brick construction house situated on a 40-foot wide road near Shaukat Khanum Hospital and Emporium Mall. Ideal for multi-generational families with dual electrical meters and wide car porch.',
     features: ['Dual Gas & Electric Meters', 'Solid Teak Woodwork', 'Car Porch for 2 Cars', 'Storage Room', 'Walk to Mosque'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -181,7 +181,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'A cozy 5 Marla house located in the heart of Faisal Town, minutes from Model Town park and Fast University. Excellent rental yield and solid construction with verified registry.',
     features: ['Verified Registry', 'Sui Gas Installed', 'Near Model Town Park', 'Paved Street'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -213,7 +213,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Tastefully furnished executive house available for immediate lease in prestigious DHA Phase 5 Lahore. Includes inverter air conditioners, high-speed fiber internet wiring, contemporary sofa sets, and backup power inverter.',
     features: ['Fully Furnished', 'Inverter ACs in all rooms', 'UPS Inverter Backup', 'Lawn Area', 'Servant Room with Bath'],
     images: [
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg'
+      '/images/hero_luxury_villa_1792767491841.jpg'
     ],
     featured: true,
     status: 'available',
@@ -245,7 +245,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Spacious and bright 5 Marla house for rent in Sector D Bahria Town. Clean neighborhood, uninterrupted utilities, 24/7 security, and close proximity to Bahria Hospital.',
     features: ['Uninterrupted Power', 'Gated Community', 'Car Parking', 'Near Hospital & Supermarket'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -277,7 +277,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'High-floor 2-bedroom luxury apartment with panoramic views over the Lahore skyline. Features high-speed passenger elevators, dedicated basement parking, rooftop pool, and gymnasium.',
     features: ['Rooftop Swimming Pool', 'Modern Fitness Center', 'Basement Reserved Parking', '24/7 Reception Concierge', 'Backup Generator'],
     images: [
-      '/src/assets/images/apartment_luxury_tower_1792767492630.jpg'
+      '/images/apartment_luxury_tower_1792767492630.jpg'
     ],
     featured: true,
     status: 'available',
@@ -309,7 +309,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Spacious and sunlit apartment in prime F-11 Islamabad with stunning Margalla Hills views. Within walking distance to F-11 Markaz dining, organic grocery stores, and fitness studios.',
     features: ['Margalla Hills View', 'Elevator Access', 'Walking Distance to Markaz', 'Secure Building Access', 'Covered Parking'],
     images: [
-      '/src/assets/images/apartment_luxury_tower_1792767492630.jpg'
+      '/images/apartment_luxury_tower_1792767492630.jpg'
     ],
     featured: false,
     status: 'available',
@@ -341,7 +341,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Fully developed, possession-ready 5 Marla residential plot on a 50-foot wide boulevard in DHA Phase 7 Lahore. Ideal for immediate house construction or high capital gain investment.',
     features: ['Possession Ready', 'Wide 50ft Boulevard', 'Underground Electricity', 'Park Facing Option', 'Clear DHA Allocation'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -372,7 +372,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Prime 4 Marla commercial plot with permission for Ground + 5 floors commercial plaza. Located in high-footfall business boulevard with parking plaza right in front.',
     features: ['Ground + 5 Floor Approval', 'Plaza Front Parking', 'High Footfall Zone', 'Prime Retail Hub'],
     images: [
-      '/src/assets/images/commercial_plaza_modern_1792767492726.jpg'
+      '/images/commercial_plaza_modern_1792767492726.jpg'
     ],
     featured: false,
     status: 'available',
@@ -403,8 +403,8 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Palatial 1 Kanal villa in DHA Phase 2 Islamabad with landscaped Spanish courtyard, heated indoor plunge pool, private cinema theatre, smart home automation, and 4-car porch.',
     features: ['Smart Home Automation', 'Private Mini Cinema', 'Courtyard & Plunge Pool', 'German Kitchens', '4 Car Parking Garage'],
     images: [
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg',
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/hero_luxury_villa_1792767491841.jpg',
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -436,7 +436,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Magnificent newly built house in Hayatabad Phase 5 Peshawar featuring traditional front stonework, modern interior spaces, imported tiles, wide guest reception, and landscaped lawn.',
     features: ['Separate Hujra / Guest Drawing', 'Imported Granite Kitchen', 'Wide Front Lawn', 'Corner Plot Advantage'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -468,7 +468,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Solidly constructed brand-new home directly accessible from Kashmir Highway / Srinagar Highway. Features 2 complete independent living units, perfect for high rental returns or large families.',
     features: ['Direct Highway Connectivity', 'Dual Living Units', 'Sui Gas Verified', 'Modern Fall Ceilings'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -500,7 +500,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Clean, secure, and easily accessible family house available for long-term rent in Chaklala Scheme 3. Close to schools, metro bus feed route, and shopping plazas.',
     features: ['Secure Locality', 'Water Boring & Supply', 'Car Porch', 'Near Metro Link'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -532,7 +532,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Ground floor retail glass-front shop in premium Gulberg commercial strip with massive footfall. Ideal for fashion boutiques, tech retailers, cosmetics, or artisanal cafes.',
     features: ['Glass Frontage', '24/7 Security & CCTV', 'Backup Generator', 'High Footfall Traffic'],
     images: [
-      '/src/assets/images/commercial_plaza_modern_1792767492726.jpg'
+      '/images/commercial_plaza_modern_1792767492726.jpg'
     ],
     featured: false,
     status: 'available',
@@ -563,7 +563,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Ultra-exclusive duplex penthouse overlooking the Arabian Sea in Clifton Karachi. Boasts a private infinity terrace, smart temperature control, Italian marble kitchen, and private elevator landing.',
     features: ['Panoramic Sea View', 'Private Elevator Landing', 'Infinity Terrace', 'Smart Climate Control', 'Multi-layer Security'],
     images: [
-      '/src/assets/images/apartment_luxury_tower_1792767492630.jpg'
+      '/images/apartment_luxury_tower_1792767492630.jpg'
     ],
     featured: true,
     status: 'available',
@@ -595,7 +595,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Grade-A corporate office ready for multinational or tech company occupancy on Jinnah Avenue. High-speed elevators, conference room setup, fiber optics, and dedicated car park slots.',
     features: ['Grade-A Building', 'Jinnah Avenue Facing', 'Dedicated Fiber Ducting', '4 Reserved Parking Bays'],
     images: [
-      '/src/assets/images/commercial_plaza_modern_1792767492726.jpg'
+      '/images/commercial_plaza_modern_1792767492726.jpg'
     ],
     featured: false,
     status: 'available',
@@ -627,7 +627,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Premium corner plot on 60ft boulevard near modern civic amenities and grand mosque in Bahria Phase 8. High investment potential and ready for construction.',
     features: ['Corner Plot', '60ft Boulevard', 'Immediate Construction', 'Sewerage & Gas Ready'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -658,8 +658,8 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Opulent custom-designed 1 Kanal house featuring Turkish marble flooring, solid ashwood woodwork, double master suites, rooftop entertainment patio, and manicured private courtyard.',
     features: ['Turkish Marble', 'Solid Ashwood Work', 'Double Master Bedrooms', 'Rooftop Patio', 'Lawn & Water Fountain'],
     images: [
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg',
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/hero_luxury_villa_1792767491841.jpg',
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -691,7 +691,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Charming sea-view apartment in Creek Vista DHA Phase 8 Karachi. Airy cross-ventilation, expansive sea-breeze balconies, dedicated security and standby generators.',
     features: ['Creek & Sea Breeze View', 'Standby 24/7 Generator', 'Community Clubhouse', 'Swimming Pool & Tennis'],
     images: [
-      '/src/assets/images/apartment_luxury_tower_1792767492630.jpg'
+      '/images/apartment_luxury_tower_1792767492630.jpg'
     ],
     featured: false,
     status: 'available',
@@ -723,7 +723,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Picturesque 2 Kanal agricultural parcel ideal for private luxury weekend retreat, equestrian stable, or organic orchard. Features perimeter boundary wall and sweet tube-well water.',
     features: ['Perimeter Wall Completed', 'Sweet Tube-Well Water', 'Gated Farm Community', 'Electricity Line Available'],
     images: [
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg'
+      '/images/hero_luxury_villa_1792767491841.jpg'
     ],
     featured: false,
     status: 'available',
@@ -754,7 +754,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Established retail store on high-yield Bank Road Saddar. Currently tenanted to a reputable retail brand offering 7.2% annual rental ROI. Ideal passive income asset.',
     features: ['Immediate Rental Income', 'Bank Road Footfall', 'Verified Ownership Title', 'Central Air Ducting'],
     images: [
-      '/src/assets/images/commercial_plaza_modern_1792767492726.jpg'
+      '/images/commercial_plaza_modern_1792767492726.jpg'
     ],
     featured: false,
     status: 'available',
@@ -785,8 +785,8 @@ const SEED_PROPERTIES: Property[] = [
     description: 'An architectural crown jewel in Islamabad’s premier Sector F-7/2 with direct views of the Margallas. Features geothermal heating, smart glass skylights, basement home lounge, and private diplomatic-grade security system.',
     features: ['Margalla Ridge Views', 'Diplomatic Security Gate', 'Smart Glass Skylight', 'Sub-Zero Kitchen Appliances', 'Basement Media Lounge'],
     images: [
-      '/src/assets/images/hero_luxury_villa_1792767491841.jpg',
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/hero_luxury_villa_1792767491841.jpg',
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: true,
     status: 'available',
@@ -818,7 +818,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Sensibly priced 2-bedroom home in tranquil University Town Peshawar. Perfect starter home for young professionals or university faculty members.',
     features: ['Accessible Location', 'Sui Gas & Electric Meter', 'Near University Campus', 'Safe Family Enclave'],
     images: [
-      '/src/assets/images/house_dha_contemporary_1792767492366.jpg'
+      '/images/house_dha_contemporary_1792767492366.jpg'
     ],
     featured: false,
     status: 'available',
@@ -850,7 +850,7 @@ const SEED_PROPERTIES: Property[] = [
     description: 'Whole-floor corporate office shell in Pakistan’s financial district on I.I. Chundrigar Road. 6 high-speed Otis elevators, triple redundant power backups, and panoramic harbor views.',
     features: ['Pakistan Financial District Hub', 'Triple Redundant Power', 'Harbor & City Views', '6 High-speed Elevators', 'Turnstile Access Control'],
     images: [
-      '/src/assets/images/commercial_plaza_modern_1792767492726.jpg'
+      '/images/commercial_plaza_modern_1792767492726.jpg'
     ],
     featured: false,
     status: 'available',
@@ -1130,7 +1130,7 @@ class Database {
         bathrooms: sub.bathrooms || 0,
         description: sub.description,
         features: ['Community Living', 'Verified Submission'],
-        images: sub.images.length > 0 ? sub.images : ['/src/assets/images/house_dha_contemporary_1792767492366.jpg'],
+        images: sub.images.length > 0 ? sub.images : ['/images/house_dha_contemporary_1792767492366.jpg'],
         featured: false,
         status: 'available',
         furnishing: 'unfurnished',

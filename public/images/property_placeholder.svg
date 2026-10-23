@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="800" height="600" fill="url(#skyGrad)" />
+  
+  <!-- Subtle architectural grid -->
+  <g stroke="#334155" stroke-width="1" opacity="0.3">
+    <line x1="100" y1="0" x2="100" y2="600" />
+    <line x1="200" y1="0" x2="200" y2="600" />
+    <line x1="300" y1="0" x2="300" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="500" y1="0" x2="500" y2="600" />
+    <line x1="600" y1="0" x2="600" y2="600" />
+    <line x1="700" y1="0" x2="700" y2="600" />
+  </g>
+  
+  <!-- Stylized modern building silhouette -->
+  <g fill="#1e293b" stroke="#475569" stroke-width="2">
+    <rect x="250" y="240" width="300" height="260" rx="8" />
+    <rect x="280" y="200" width="240" height="40" rx="4" fill="#334155" />
+    <!-- Window grid -->
+    <rect x="280" y="270" width="60" height="70" rx="4" fill="#0f172a" />
+    <rect x="370" y="270" width="60" height="70" rx="4" fill="#0f172a" />
+    <rect x="460" y="270" width="60" height="70" rx="4" fill="#0f172a" />
+    <rect x="280" y="370" width="60" height="70" rx="4" fill="#0f172a" />
+    <rect x="370" y="370" width="60" height="70" rx="4" fill="#0f172a" />
+    <rect x="460" y="370" width="60" height="70" rx="4" fill="#0f172a" />
+    <!-- Door -->
+    <rect x="365" y="440" width="70" height="60" rx="2" fill="url(#accentGrad)" />
+  </g>
+  
+  <!-- ZameenVista branding mark -->
+  <circle cx="400" cy="150" r="32" fill="#0f172a" stroke="url(#accentGrad)" stroke-width="3" />
+  <path d="M386 160 L400 138 L414 160 Z" fill="url(#accentGrad)" />
+  <rect x="394" y="152" width="12" height="12" fill="#0f172a" />
+
+  <text x="400" y="535" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#f8fafc" text-anchor="middle" letter-spacing="1">
+    ZAMEENVISTA
+  </text>
+  <text x="400" y="560" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#94a3b8" text-anchor="middle" letter-spacing="0.5">
+    Verified Property Showcase
+  </text>
+</svg>

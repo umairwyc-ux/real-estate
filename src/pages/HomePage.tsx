@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Property, SiteSettings, Testimonial } from '../types';
 import { PropertyCard } from '../components/PropertyCard';
+import { normalizeImageUrl, DEFAULT_HERO_IMAGE } from '../utils/formatters';
 
 interface HomePageProps {
   properties: Property[];
@@ -105,7 +106,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Background Image with Dark Vignette Scrim */}
         <div className="absolute inset-0 z-0">
           <img
-            src={settings?.heroImageUrl || '/src/assets/images/hero_luxury_villa_1792767491841.jpg'}
+            src={normalizeImageUrl(settings?.heroImageUrl) || DEFAULT_HERO_IMAGE}
             alt="Luxury Property in Pakistan"
             className="w-full h-full object-cover object-center opacity-40 scale-105 transition-transform duration-1000"
           />

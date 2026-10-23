@@ -18,7 +18,7 @@
         "Verified Submission"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -59,8 +59,8 @@
         "Solar Ready"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg",
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg",
+        "/images/hero_luxury_villa_1792767491841.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -98,7 +98,7 @@
         "Near Commercial Hub"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -136,7 +136,7 @@
         "Walk to Mosque"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -173,7 +173,7 @@
         "Paved Street"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -211,7 +211,7 @@
         "Servant Room with Bath"
       ],
       "images": [
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg"
+        "/images/hero_luxury_villa_1792767491841.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -248,7 +248,7 @@
         "Near Hospital & Supermarket"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -286,7 +286,7 @@
         "Backup Generator"
       ],
       "images": [
-        "/src/assets/images/apartment_luxury_tower_1792767492630.jpg"
+        "/images/apartment_luxury_tower_1792767492630.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -324,7 +324,7 @@
         "Covered Parking"
       ],
       "images": [
-        "/src/assets/images/apartment_luxury_tower_1792767492630.jpg"
+        "/images/apartment_luxury_tower_1792767492630.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -362,7 +362,7 @@
         "Clear DHA Allocation"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -398,7 +398,7 @@
         "Prime Retail Hub"
       ],
       "images": [
-        "/src/assets/images/commercial_plaza_modern_1792767492726.jpg"
+        "/images/commercial_plaza_modern_1792767492726.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -435,8 +435,8 @@
         "4 Car Parking Garage"
       ],
       "images": [
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg",
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/hero_luxury_villa_1792767491841.jpg",
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -473,7 +473,7 @@
         "Corner Plot Advantage"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -510,7 +510,7 @@
         "Modern Fall Ceilings"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -547,7 +547,7 @@
         "Near Metro Link"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -584,7 +584,7 @@
         "High Footfall Traffic"
       ],
       "images": [
-        "/src/assets/images/commercial_plaza_modern_1792767492726.jpg"
+        "/images/commercial_plaza_modern_1792767492726.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -621,7 +621,7 @@
         "Multi-layer Security"
       ],
       "images": [
-        "/src/assets/images/apartment_luxury_tower_1792767492630.jpg"
+        "/images/apartment_luxury_tower_1792767492630.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -658,7 +658,7 @@
         "4 Reserved Parking Bays"
       ],
       "images": [
-        "/src/assets/images/commercial_plaza_modern_1792767492726.jpg"
+        "/images/commercial_plaza_modern_1792767492726.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -695,7 +695,7 @@
         "Sewerage & Gas Ready"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -732,8 +732,8 @@
         "Lawn & Water Fountain"
       ],
       "images": [
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg",
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/hero_luxury_villa_1792767491841.jpg",
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -770,7 +770,7 @@
         "Swimming Pool & Tennis"
       ],
       "images": [
-        "/src/assets/images/apartment_luxury_tower_1792767492630.jpg"
+        "/images/apartment_luxury_tower_1792767492630.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -807,7 +807,7 @@
         "Electricity Line Available"
       ],
       "images": [
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg"
+        "/images/hero_luxury_villa_1792767491841.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -843,7 +843,7 @@
         "Central Air Ducting"
       ],
       "images": [
-        "/src/assets/images/commercial_plaza_modern_1792767492726.jpg"
+        "/images/commercial_plaza_modern_1792767492726.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -880,8 +880,8 @@
         "Basement Media Lounge"
       ],
       "images": [
-        "/src/assets/images/hero_luxury_villa_1792767491841.jpg",
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/hero_luxury_villa_1792767491841.jpg",
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": true,
       "status": "available",
@@ -918,7 +918,7 @@
         "Safe Family Enclave"
       ],
       "images": [
-        "/src/assets/images/house_dha_contemporary_1792767492366.jpg"
+        "/images/house_dha_contemporary_1792767492366.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -956,7 +956,7 @@
         "Turnstile Access Control"
       ],
       "images": [
-        "/src/assets/images/commercial_plaza_modern_1792767492726.jpg"
+        "/images/commercial_plaza_modern_1792767492726.jpg"
       ],
       "featured": false,
       "status": "available",
@@ -1049,7 +1049,7 @@
     "businessAddress": "Floor 4, Vista Commercial Tower, MM Alam Road, Gulberg III, Lahore, Pakistan",
     "heroHeadline": "Find Your Perfect Property with ZameenVista",
     "heroSubtitle": "Discover homes, plots, apartments and commercial properties across Pakistan.",
-    "heroImageUrl": "/src/assets/images/hero_luxury_villa_1792767491841.jpg",
+    "heroImageUrl": "/images/hero_luxury_villa_1792767491841.jpg",
     "socials": {
       "facebook": "https://facebook.com",
       "twitter": "https://twitter.com",
