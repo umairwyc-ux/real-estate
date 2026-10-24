@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { PropertyPurpose, PropertyType, PropertyCondition } from '../types';
 import { api } from '../services/api';
+import { ImageGalleryUploader } from '../components/ImageGalleryUploader';
 
 interface SubmitPropertyPageProps {
   onNavigate: (path: string) => void;
@@ -30,7 +31,7 @@ export const SubmitPropertyPage: React.FC<SubmitPropertyPageProps> = ({ onNaviga
   const [bedrooms, setBedrooms] = useState('3');
   const [bathrooms, setBathrooms] = useState('3');
   const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [images, setImages] = useState<string[]>([]);
   const [consent, setConsent] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -63,7 +64,7 @@ export const SubmitPropertyPage: React.FC<SubmitPropertyPageProps> = ({ onNaviga
         bedrooms: Number(bedrooms),
         bathrooms: Number(bathrooms),
         description,
-        images: imageUrl.trim() ? [imageUrl.trim()] : []
+        images: images.length > 0 ? images : []
       });
 
       setSuccess(true);
@@ -100,6 +101,7 @@ export const SubmitPropertyPage: React.FC<SubmitPropertyPageProps> = ({ onNaviga
                 setPrice('');
                 setLocality('');
                 setDescription('');
+                setImages([]);
               }}
               className="flex-1 py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 cursor-pointer"
             >
@@ -348,13 +350,14 @@ export const SubmitPropertyPage: React.FC<SubmitPropertyPageProps> = ({ onNaviga
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">Property Photo URL (Optional)</label>
-                  <input
-                    type="url"
-                    placeholder="https://example.com/property-photo.jpg (Default showcase photo applied if left empty)"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white"
+                  <ImageGalleryUploader
+                    images={images}
+                    onChange={setImages}
+                    multiple={true}
+                    maxImages={8}
+                    label="Property Photos (From Gallery / Photos)"
+                    description="Upload high-quality photos from your device gallery. The first photo will be used as the cover showcase."
+                    propertyType={type}
                   />
                 </div>
 

@@ -1067,6 +1067,14 @@
       "role": "super-admin",
       "salt": "43df861a910a4bdfd5662a79990e0cd4",
       "hash": "55549419cac84da7f7efa8f0f1f0ee895e8c540538e475c6e58f3c36c2f22aef68626fe5380ff8069d6b053cdfabdcc68113489b506672a557970fdec0e8dfe0"
+    },
+    {
+      "id": "admin_umair",
+      "email": "umairwyc@gmail.com",
+      "name": "Umair (Admin)",
+      "role": "super-admin",
+      "salt": "43df861a910a4bdfd5662a79990e0cd4",
+      "hash": "55549419cac84da7f7efa8f0f1f0ee895e8c540538e475c6e58f3c36c2f22aef68626fe5380ff8069d6b053cdfabdcc68113489b506672a557970fdec0e8dfe0"
     }
   ],
   "sessions": [

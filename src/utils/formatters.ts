@@ -120,8 +120,8 @@ export function normalizeImageUrl(url?: string, propertyType?: string | unknown)
 
   const trimmed = url.trim();
 
-  // If already an external URL or data URI, return directly
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:')) {
+  // If already an external URL, blob URL, or data URI, return directly
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:') || trimmed.startsWith('blob:')) {
     return trimmed;
   }
 

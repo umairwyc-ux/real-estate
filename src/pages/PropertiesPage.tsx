@@ -96,7 +96,15 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({
       if (city !== 'all' && prop.city.toLowerCase() !== city.toLowerCase()) return false;
 
       // Type
-      if (type !== 'all' && prop.type !== type) return false;
+      if (type !== 'all') {
+        if (type === 'commercial') {
+          if (!['shop', 'office', 'plot-commercial'].includes(prop.type)) return false;
+        } else if (type === 'plot' || type === 'plots') {
+          if (!['plot-residential', 'plot-commercial'].includes(prop.type)) return false;
+        } else if (prop.type !== type) {
+          return false;
+        }
+      }
 
       // Condition
       if (condition !== 'all' && prop.condition !== condition) return false;
@@ -108,10 +116,10 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({
       if (maxPrice && Number(maxPrice) > 0 && prop.price > Number(maxPrice)) return false;
 
       // Bedrooms
-      if (bedrooms !== 'all' && prop.bedrooms < Number(bedrooms)) return false;
+      if (bedrooms !== 'all' && (prop.bedrooms ?? 0) < Number(bedrooms)) return false;
 
       // Bathrooms
-      if (bathrooms !== 'all' && prop.bathrooms < Number(bathrooms)) return false;
+      if (bathrooms !== 'all' && (prop.bathrooms ?? 0) < Number(bathrooms)) return false;
 
       return true;
     }).sort((a, b) => {
@@ -281,8 +289,10 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({
                   <option value="house">Houses</option>
                   <option value="villa">Luxury Villas</option>
                   <option value="apartment">Apartments & Flats</option>
+                  <option value="plot">All Plots (Residential & Commercial)</option>
                   <option value="plot-residential">Residential Plots</option>
                   <option value="plot-commercial">Commercial Plots</option>
+                  <option value="commercial">All Commercial (Plazas, Offices, Shops)</option>
                   <option value="shop">Shops</option>
                   <option value="office">Offices</option>
                   <option value="agriculture">Agricultural Land</option>
@@ -490,7 +500,9 @@ export const PropertiesPage: React.FC<PropertiesPageProps> = ({
                 <option value="house">Houses</option>
                 <option value="villa">Villas</option>
                 <option value="apartment">Apartments</option>
-                <option value="plot-residential">Plots</option>
+                <option value="plot">All Plots</option>
+                <option value="plot-residential">Residential Plots</option>
+                <option value="commercial">All Commercial</option>
                 <option value="shop">Shops</option>
                 <option value="office">Offices</option>
               </select>

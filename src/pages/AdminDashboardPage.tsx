@@ -35,6 +35,7 @@ import {
 } from '../types';
 import { formatPKR, formatNumberPK, getCategoryBadge, getConditionBadge } from '../utils/formatters';
 import { api } from '../services/api';
+import { ImageGalleryUploader } from '../components/ImageGalleryUploader';
 
 interface AdminDashboardPageProps {
   token: string;
@@ -300,6 +301,31 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
+          {admin && (
+            <div className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-800/90 border border-slate-700 text-left">
+              {admin.picture ? (
+                <img src={admin.picture} alt="" className="w-6 h-6 rounded-full object-cover border border-amber-400/50" />
+              ) : (
+                <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 text-[11px] font-bold flex items-center justify-center shrink-0">
+                  {(admin.name || admin.email || 'A').charAt(0).toUpperCase()}
+                </div>
+              )}
+              <div className="overflow-hidden max-w-[160px]">
+                <div className="text-[11px] font-semibold text-white leading-tight truncate">
+                  {admin.name || 'Admin'}
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono leading-tight truncate">
+                  {admin.email}
+                </div>
+              </div>
+              {admin.authProvider === 'google' && (
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-medium shrink-0">
+                  Google
+                </span>
+              )}
+            </div>
+          )}
+
           <button
             onClick={() => onNavigate('/')}
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700 hover:bg-slate-800 text-xs text-slate-300 hover:text-white transition-colors cursor-pointer"
@@ -1036,13 +1062,14 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
                         />
                       </div>
 
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-700 mb-1">Hero Background Image URL</label>
-                        <input
-                          type="text"
-                          value={settingsForm.heroImageUrl}
-                          onChange={(e) => setSettingsForm({ ...settingsForm, heroImageUrl: e.target.value })}
-                          className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white"
+                      <div className="sm:col-span-2">
+                        <ImageGalleryUploader
+                          images={settingsForm.heroImageUrl ? [settingsForm.heroImageUrl] : []}
+                          onChange={(imgs) => setSettingsForm({ ...settingsForm, heroImageUrl: imgs[0] || '' })}
+                          multiple={false}
+                          label="Hero Showcase Banner Image (From Gallery)"
+                          description="Select a high-quality banner from your device gallery. Will be featured as the homepage hero background."
+                          token={token}
                         />
                       </div>
                     </div>
@@ -1336,12 +1363,15 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Photo Image URL</label>
-                <input
-                  type="text"
-                  value={(propForm.images && propForm.images[0]) || ''}
-                  onChange={(e) => setPropForm({ ...propForm, images: [e.target.value] })}
-                  className="w-full h-10 px-3 text-xs rounded-lg border border-slate-300 bg-white"
+                <ImageGalleryUploader
+                  images={propForm.images || []}
+                  onChange={(newImages) => setPropForm({ ...propForm, images: newImages })}
+                  multiple={true}
+                  maxImages={12}
+                  label="Property Showcase Photos (From Device Gallery)"
+                  description="Add, reorder, or replace photos directly from your phone/PC gallery. First photo will be the main listing cover."
+                  token={token}
+                  propertyType={propForm.type}
                 />
               </div>
 

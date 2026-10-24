@@ -32,7 +32,14 @@ export default function App() {
   const [adminToken, setAdminToken] = useState<string | null>(() => {
     return localStorage.getItem('zv_admin_token');
   });
-  const [adminUser, setAdminUser] = useState<any>(null);
+  const [adminUser, setAdminUser] = useState<any>(() => {
+    try {
+      const stored = localStorage.getItem('zv_admin_user');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
   // Sync route on popstate (browser back/forward)
   useEffect(() => {
@@ -74,14 +81,19 @@ export default function App() {
         .then((res) => {
           if (res.authenticated) {
             setAdminUser(res.admin);
+            try {
+              localStorage.setItem('zv_admin_user', JSON.stringify(res.admin));
+            } catch (e) {}
           } else {
             localStorage.removeItem('zv_admin_token');
+            localStorage.removeItem('zv_admin_user');
             setAdminToken(null);
             setAdminUser(null);
           }
         })
         .catch(() => {
           localStorage.removeItem('zv_admin_token');
+          localStorage.removeItem('zv_admin_user');
           setAdminToken(null);
           setAdminUser(null);
         });
@@ -101,6 +113,9 @@ export default function App() {
 
   const handleLoginSuccess = (token: string, admin: any) => {
     localStorage.setItem('zv_admin_token', token);
+    try {
+      localStorage.setItem('zv_admin_user', JSON.stringify(admin));
+    } catch (e) {}
     setAdminToken(token);
     setAdminUser(admin);
     handleNavigate('/admin/dashboard');
@@ -111,6 +126,7 @@ export default function App() {
       api.logout(adminToken).catch(() => {});
     }
     localStorage.removeItem('zv_admin_token');
+    localStorage.removeItem('zv_admin_user');
     setAdminToken(null);
     setAdminUser(null);
     handleNavigate('/');
@@ -271,13 +287,13 @@ export default function App() {
       );
     }
 
-    // 14. Residential Plots
+    // 14. Residential & Commercial Plots
     if (currentPath === '/plots') {
       return (
         <PropertiesPage
           properties={properties}
           settings={settings}
-          initialFilters={{ type: 'plot-residential', ...routeParams }}
+          initialFilters={{ type: 'plot', ...routeParams }}
           pageTitle="Residential & Commercial Plots"
           pageSubtitle="Possession-ready 5 Marla, 10 Marla, and 1 Kanal plots in DHA, Bahria, and CDA developments."
           onSelectProperty={handleSelectProperty}
@@ -292,7 +308,7 @@ export default function App() {
         <PropertiesPage
           properties={properties}
           settings={settings}
-          initialFilters={{ type: 'shop', ...routeParams }}
+          initialFilters={{ type: 'commercial', ...routeParams }}
           pageTitle="Commercial Real Estate"
           pageSubtitle="Retail showrooms, corporate office floors, and commercial plots in prime commercial hubs."
           onSelectProperty={handleSelectProperty}

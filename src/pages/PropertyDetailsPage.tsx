@@ -272,11 +272,11 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Main Featured Photo */}
             <div 
-              className="lg:col-span-2 relative aspect-16/10 rounded-2xl overflow-hidden bg-slate-900 cursor-pointer group shadow-sm"
+              className={`${galleryImages.length > 1 ? 'lg:col-span-2' : 'lg:col-span-3'} relative aspect-16/10 rounded-2xl overflow-hidden bg-slate-900 cursor-pointer group shadow-sm`}
               onClick={() => setLightboxOpen(true)}
             >
               <img
-                src={galleryImages[activeImageIndex]}
+                src={galleryImages[activeImageIndex] || galleryImages[0]}
                 alt={property.title}
                 loading="eager"
                 decoding="async"
@@ -299,30 +299,32 @@ export const PropertyDetailsPage: React.FC<PropertyDetailsPageProps> = ({
               </div>
             </div>
 
-            {/* Side Thumbnails */}
-            <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
-              {galleryImages.map((img, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setActiveImageIndex(idx)}
-                  className={`relative flex-1 min-w-[120px] lg:min-w-0 aspect-16/10 rounded-xl overflow-hidden cursor-pointer border-2 transition-all ${
-                    idx === activeImageIndex ? 'border-amber-500 ring-2 ring-amber-500/20' : 'border-transparent opacity-75 hover:opacity-100'
-                  }`}
-                >
-                  <img 
-                    src={img} 
-                    alt="thumbnail" 
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover" 
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.src = DEFAULT_FALLBACK_IMAGE;
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Side Thumbnails (when multiple photos exist) */}
+            {galleryImages.length > 1 && (
+              <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
+                {galleryImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`relative flex-1 min-w-[120px] lg:min-w-0 aspect-16/10 rounded-xl overflow-hidden cursor-pointer border-2 transition-all ${
+                      idx === activeImageIndex ? 'border-amber-500 ring-2 ring-amber-500/20' : 'border-transparent opacity-75 hover:opacity-100'
+                    }`}
+                  >
+                    <img 
+                      src={img} 
+                      alt="thumbnail" 
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover" 
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.src = DEFAULT_FALLBACK_IMAGE;
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

@@ -610,6 +610,9 @@ export const api = {
           name: 'ZameenVista Administrator',
           role: 'super-admin'
         };
+        try {
+          localStorage.setItem('zv_admin_user', JSON.stringify(adminData));
+        } catch (e) {}
         return {
           success: true,
           token: mockToken,
@@ -620,6 +623,38 @@ export const api = {
     }
   },
 
+  async loginWithGoogle(payload: { email: string; name?: string; picture?: string; credential?: string }): Promise<{ success: boolean; token: string; admin: any }> {
+    try {
+      return await fetchJson(`${API_BASE}/api/auth/google`, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      });
+    } catch (err: any) {
+      // Fallback for static Netlify environment
+      const lowerEmail = payload.email.toLowerCase().trim();
+      const mockToken = 'zv_client_session_google_' + Date.now();
+      const adminData = {
+        id: 'admin_google_' + lowerEmail.replace(/[^a-z0-9]/gi, '_'),
+        email: lowerEmail,
+        name: payload.name || (lowerEmail === 'umairwyc@gmail.com' ? 'Umair (Admin)' : lowerEmail.split('@')[0]),
+        role: 'super-admin',
+        picture: payload.picture,
+        authProvider: 'google'
+      };
+
+      try {
+        localStorage.setItem('zv_admin_user', JSON.stringify(adminData));
+        localStorage.setItem('zv_admin_token', mockToken);
+      } catch (e) {}
+
+      return {
+        success: true,
+        token: mockToken,
+        admin: adminData
+      };
+    }
+  },
+
   async checkAuth(token: string): Promise<{ authenticated: boolean; admin: any }> {
     try {
       return await fetchJson(`${API_BASE}/api/auth/me`, {
@@ -627,6 +662,16 @@ export const api = {
       });
     } catch (err) {
       if (token && token.startsWith('zv_client_session_')) {
+        try {
+          const cachedUser = localStorage.getItem('zv_admin_user');
+          if (cachedUser) {
+            return {
+              authenticated: true,
+              admin: JSON.parse(cachedUser)
+            };
+          }
+        } catch (e) {}
+
         return {
           authenticated: true,
           admin: {
@@ -664,16 +709,18 @@ export const api = {
     }
   },
 
-  // Upload image
-  async uploadImage(imageBase64: string, filename: string, token: string): Promise<{ success: boolean; url: string }> {
+  // Upload image from gallery/device
+  async uploadImage(imageBase64: string, filename?: string, token?: string): Promise<{ success: boolean; url: string }> {
     try {
+      const headers: Record<string, string> = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
       return await fetchJson(`${API_BASE}/api/upload`, {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ imageBase64, filename })
+        headers,
+        body: JSON.stringify({ imageBase64, filename: filename || 'gallery_photo.jpg' })
       });
     } catch (err) {
-      // In static mode, return data URL directly so image is viewable immediately
+      // In static mode (e.g. Netlify) or when backend is offline, return data URL directly so image displays immediately
       return { success: true, url: imageBase64 };
     }
   }

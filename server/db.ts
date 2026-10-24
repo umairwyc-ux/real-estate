@@ -958,6 +958,14 @@ class Database {
         role: 'super-admin',
         salt,
         hash
+      },
+      {
+        id: 'admin_umair',
+        email: 'umairwyc@gmail.com',
+        name: 'Umair (Admin)',
+        role: 'super-admin',
+        salt,
+        hash
       }
     ];
   }
@@ -1279,6 +1287,57 @@ class Database {
         email: admin.email,
         name: admin.name,
         role: admin.role
+      }
+    };
+  }
+
+  public authenticateGoogleAdmin(email: string, name?: string, picture?: string): { token: string; admin: { id: string; email: string; name: string; role: string; picture?: string; authProvider: string } } | null {
+    const normalizedEmail = email.toLowerCase().trim();
+    if (!normalizedEmail || !normalizedEmail.includes('@')) {
+      return null;
+    }
+    
+    // Check if email matches existing admin or auto-register
+    let admin = this.data.admins.find(a => a.email.toLowerCase() === normalizedEmail);
+
+    if (!admin) {
+      const { salt, hash } = hashPassword(crypto.randomBytes(16).toString('hex'));
+      admin = {
+        id: `admin_google_${Date.now()}`,
+        email: normalizedEmail,
+        name: name || (normalizedEmail === 'umairwyc@gmail.com' ? 'Umair (Admin)' : normalizedEmail.split('@')[0]),
+        role: 'super-admin',
+        salt,
+        hash
+      };
+      this.data.admins.push(admin);
+    } else if (name && admin.name === 'ZameenVista Administrator') {
+      admin.name = name;
+    }
+
+    const token = crypto.randomBytes(32).toString('hex');
+    const now = Date.now();
+    const expiresAt = now + 7 * 24 * 60 * 60 * 1000; // 7 days
+
+    this.data.sessions.push({
+      token,
+      adminId: admin.id,
+      createdAt: now,
+      expiresAt
+    });
+
+    this.data.sessions = this.data.sessions.filter(s => s.expiresAt > now);
+    this.save();
+
+    return {
+      token,
+      admin: {
+        id: admin.id,
+        email: admin.email,
+        name: admin.name,
+        role: admin.role,
+        picture,
+        authProvider: 'google'
       }
     };
   }

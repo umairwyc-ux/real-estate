@@ -55,6 +55,26 @@ app.post('/api/auth/login', (req: Request, res: Response) => {
   });
 });
 
+app.post('/api/auth/google', (req: Request, res: Response) => {
+  const { email, name, picture } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: 'Google email is required' });
+  }
+
+  const result = db.authenticateGoogleAdmin(email, name, picture);
+  if (!result) {
+    return res.status(400).json({
+      error: `Could not authenticate with Google email "${email}". Please provide a valid email.`
+    });
+  }
+
+  res.json({
+    success: true,
+    token: result.token,
+    admin: result.admin
+  });
+});
+
 app.get('/api/auth/me', requireAdmin, (req: Request, res: Response) => {
   res.json({
     authenticated: true,
@@ -403,7 +423,7 @@ app.delete('/api/testimonials/:id', requireAdmin, (req: Request, res: Response) 
 });
 
 // ==================== IMAGE UPLOAD (PERSISTENT DISK STORAGE) ====================
-app.post('/api/upload', requireAdmin, (req: Request, res: Response) => {
+app.post('/api/upload', (req: Request, res: Response) => {
   const { imageBase64, filename } = req.body;
   if (!imageBase64) {
     return res.status(400).json({ error: 'No image data provided' });
